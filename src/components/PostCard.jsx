@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 function PostCard({$id, dishName, dishImage}) {
     
   return (
-    <Link to={`/menu/${$id}`}>
+    <Link to={`/post/${$id}`}>
         <div className='w-full bg-gray-100 rounded-xl p-4'>
             <div className='w-full justify-center mb-4'>
                 <img src={appwriteService.getFilePreview(dishImage)} alt={title}
