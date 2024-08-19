@@ -31,9 +31,9 @@ function Home() {
   // }
   return (
     <div className="w-full h-screen">
-        <div className="absolute h-full overflow-hidden">
+        <div className=" h-full overflow-hidden ">
           <img
-            src="public\assets\Header\hero-bg.jpg"
+            src="https://get.pxhere.com/photo/restaurant-food-gourmet-dessert-circle-painting-pears-fruits-still-life-photography-929552.jpg"
             alt="Burger and Fries"
             className="w-full h-full object-cover"
           />
