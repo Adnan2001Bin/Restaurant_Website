@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { Button, Input, RTE, Select } from "..";
+import { Button, Input, Select } from "..";
 import appwriteService from "../../apppwrite/config"
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -100,17 +100,17 @@ export default function PostForm({ post }) {
         />
 
         <Input
-          label="Dish Price :" // New input field for dish price
+          label="Dish Price :"
           placeholder="Dish Price"
           className="mb-4"
           {...register("dishPrice", { required: true })}
         />
 
-        <RTE
+        <Input
           label="Dish Details :"
           name="dishDetails"
-          control={control}
-          defaultValue={getValues("dishDetails")}
+          className="mb-4"
+          {...register("dishDetails", { required: true })}
         />
       </div>
       <div className="w-1/3 px-2">
