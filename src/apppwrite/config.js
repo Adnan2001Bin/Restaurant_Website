@@ -25,7 +25,7 @@ export class Service {
     dishPrice,
   }) {
     try {
-      await this.databases.createDocument(
+      return await this.databases.createDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectioId,
         slug,
@@ -108,6 +108,7 @@ export class Service {
     try {
       return await this.bucket.createFile(
         conf.appwriteBucketId,
+        // conf.appwriteBucketId,
         ID.unique(),
         file
       );

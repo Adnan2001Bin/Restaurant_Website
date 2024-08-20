@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, Select } from "..";
-import appwriteService from "../../apppwrite/config"
+import appwriteService from "../../apppwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -13,7 +13,7 @@ export default function PostForm({ post }) {
         slug: post?.$id || "",
         dishDetails: post?.dishDetails || "",
         status: post?.status || "active",
-        dishPrice: post?.dishPrice || "", // Dish Price added here
+        dishPrice: post?.dishPrice || "",
       },
     });
 
@@ -51,10 +51,54 @@ export default function PostForm({ post }) {
 
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);
+          console.log(dbPost.$id)
         }
       }
     }
   };
+
+  // const submit = async (data) => {
+  //   try {
+  //     let dbPost;
+
+  //     if (post) {
+  //       console.log("Updating existing post...");
+  //       const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+
+  //       if (file) {
+  //         await appwriteService.deleteFile(post.dishImage);
+  //         console.log("File deleted:", post.dishImage);
+  //       }
+
+  //       dbPost = await appwriteService.updatePost(post.$id, {
+  //         ...data,
+  //         dishImage: file ? file.$id : undefined,
+  //       });
+  //     } else {
+  //       console.log("Creating new post...");
+  //       const file = await appwriteService.uploadFile(data.image[0]);
+  //       if (file) {
+  //         console.log("File uploaded successfully:", file);
+  //         const fileId = file.$id;
+  //         data.dishImage = fileId;
+
+  //         dbPost = await appwriteService.createPost({
+  //           ...data,
+  //           userId: userData.$id,
+  //         });
+  //       }
+  //     }
+
+  //     if (dbPost) {
+  //       console.log("Navigating to:", `/post/${dbPost.$id}`);
+  //       navigate(`/post/${dbPost.$id}`);
+  //     } else {
+  //       console.error("Failed to create/update post.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error during submit:", error);
+  //   }
+  // };
 
   const slugTransform = useCallback((value) => {
     if (value && typeof value === "string")
@@ -70,7 +114,9 @@ export default function PostForm({ post }) {
   React.useEffect(() => {
     const subscription = watch((value, { name }) => {
       if (name === "dishName") {
-        setValue("slug", slugTransform(value.dishName), { shouldValidate: true });
+        setValue("slug", slugTransform(value.dishName), {
+          shouldValidate: true,
+        });
       }
     });
 
@@ -86,7 +132,7 @@ export default function PostForm({ post }) {
           className="mb-4"
           {...register("dishName", { required: true })}
         />
-        
+
         <Input
           label="Slug :"
           placeholder="Slug"
